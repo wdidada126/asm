@@ -36,24 +36,22 @@ section .data
         ;; Format string for the result
         PRINTF_FORMAT: db "Dot product = %f", 0xA, 0
 
-;; Definition of the .bss section
-section .bss
         ;; Buffer to store double values of the first vector
-        vector_1: resq MAX_ELEMS
+        vector_1: times MAX_ELEMS dq 0.0
         ;; Buffer to store double values of the second vector
-        vector_2: resq MAX_ELEMS
+        vector_2: times MAX_ELEMS dq 0.0
 
         ;; Buffer to store input for the first vector
-        buffer_1: resq BUFFER_SIZE
+        buffer_1: times BUFFER_SIZE db 0
         ;; Pointer within the `buffer_1` which points to the current position
         ;; that we use to parse floating point numbers
-        end_buffer_1: resq 1
+        end_buffer_1: dq 0
 
         ;; Buffer to store input for the second vector
-        buffer_2: resq BUFFER_SIZE
+        buffer_2: times BUFFER_SIZE db 0
         ;; Pointer within the `buffer_2` which points to the current position
         ;; that we use to parse floating point numbers
-        end_buffer_2: resq 1
+        end_buffer_2: dq 0
 
 ;; Definition of the .text section
 section .text
