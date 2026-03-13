@@ -1,11 +1,11 @@
 ;; Definition of the .data section
 section .data
         ;; Number of the `sys_read` system call.
-        SYS_READ equ 0
+        SYS_READ equ 0x2000003
         ;; Number of the `sys_write` system call.
-        SYS_WRITE equ 1
+        SYS_WRITE equ 0x2000004
         ;; Number of the `sys_exit` system call.
-        SYS_EXIT equ 60
+        SYS_EXIT equ 0x2000001
         ;; Number of the standard input file descriptor.
         STD_IN equ 0
         ;; Number of the standard output file descriptor.
@@ -56,12 +56,12 @@ section .data
 ;; Definition of the .text section
 section .text
         ;; Reference to the C stdlib functions that we will use
-        extern strtod, printf
+        extern _strtod, _printf
         ;; Reference to the entry point of our program.
-        global _start
+        global _main
 
 ;; Entry point of the program.
-_start:
+_main:
         ;; Align stack to 16-byte boundary at start.
         ;; Mask off lower 4 bits to force alignment.
         and rsp, -16
@@ -114,11 +114,11 @@ _parse_first_float_vector:
         ;; the strtod(3) will finish its work.
         mov rsi, end_buffer_1
         ;; Call the strtod(3) to convert a floating-point value from the input buffer to double representation.
-        call strtod
+        call _strtod
 
         ;; Preserve the pointer to the next floating-point value from the input buffer
         ;; in the rax register.
-        mov rax, [end_buffer_1]
+        mov rax, [rel end_buffer_1]
         ;; Check whether it is the end of the input string.
         cmp rax, rdi
         ;; Proceed with the second vector if we reached the end of the first vector.
@@ -191,11 +191,11 @@ _parse_second_float_vector:
         ;; the strtod(3) will finish its work.
         mov rsi, end_buffer_2
         ;; Call the strtod(3)
-        call strtod
+        call _strtod
 
         ;; Preserve the pointer to the next floating-point value from the input buffer
         ;; in the rax register.
-        mov rax, [end_buffer_2]
+        mov rax, [rel end_buffer_2]
         ;; Check whether it is the end of the input string.
         cmp rax, rdi
         ;; Calculate the dot product after we have both vectors.
@@ -244,7 +244,7 @@ _calculate_dot_product:
         ;; We specify `1` because we need to pass only `xmm0` with the result of the program.
         mov rax, 1
         ;; Call the printf(3) function that will print the result.
-        call printf
+        call _printf
 
         ;; Exit from the program.
         jmp _exit

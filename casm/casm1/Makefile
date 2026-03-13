@@ -1,6 +1,6 @@
 all:
-	nasm -f elf64 casm.asm -o casm.o
-	ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -lc casm.o -o casm
+	nasm -f macho64 casm.asm -o casm.o
+	ld -o casm casm.o -lSystem -syslibroot $(shell xcrun -sdk macosx --show-sdk-path) -e _main -lc
 
 clean:
 	rm -rf *.o

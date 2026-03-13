@@ -6,7 +6,7 @@ int main() {
         long len = strlen(str);
         int ret = 0;
 
-        __asm__("movq $1, %%rax \n\t"     // rax = 1 - Specify the number of the system call (1 is `sys_write`).
+        __asm__("movq $0x2000004, %%rax \n\t"     // rax = 0x2000004 - Specify the number of the system call (0x2000004 is `sys_write` on macOS).
                 "movq $1, %%rdi \n\t"     // rdi = 1 - Set the first argument of `sys_write` to 1 (`stdout`).
                 "movq %1, %%rsi \n\t"     // rsi = str - Set the second argument of `sys_write` to the reference of the `str` variable.
                 "movq %2, %%rdx \n\t"     // rdx = len(str) - Set the third argument of `sys_write` to the length of the `str` variable's value.

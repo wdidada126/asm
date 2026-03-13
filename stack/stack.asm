@@ -1,9 +1,9 @@
 ;; Definition of the .data section
 section .data
         ;; Number of the `sys_write` system call
-        SYS_WRITE equ 1
+        SYS_WRITE equ 0x2000004
         ;; Number of the `sys_exit` system call
-        SYS_EXIT equ 60
+        SYS_EXIT equ 0x2000001
         ;; Number of the standard output file descriptor
         STD_OUT equ 1
         ;; Exit code from the program. The 0 status code is a success.
@@ -18,10 +18,10 @@ section .data
 ;; Definition of the .text section
 section .text
         ;; Reference to the entry point of our program
-        global _start
+        global _main
 
 ;; Entry point
-_start:
+_main:
         ;; Fetch the number of arguments from the stack and store it in the rcx register.
         pop rcx
         ;; Check the number of the given command-line arguments.

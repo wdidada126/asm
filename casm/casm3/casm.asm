@@ -1,10 +1,10 @@
 ;; Definition of the text section
 section .text
         ;; Reference to the entry point of our program
-        global my_strlen
+        global _my_strlen
 
 ;; Function that returns the length of the string passed in the first argument
-my_strlen:
+_my_strlen:
         ;; Reset the register value to zero. The value will be returned from the
         ;; function as the result.
         xor rax, rax
