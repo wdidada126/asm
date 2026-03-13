@@ -7,12 +7,12 @@ section .data
 ;; Definition of the text section
 section .text
         ;; Reference to the entry point of our program
-        global _start
+        global _main
 
 ;; Entry point
-_start:
-        ;; Specify the number of the system call (1 is `sys_write`).
-        mov rax, 1
+_main:
+        ;; Specify the number of the system call (0x2000004 is `sys_write` on macOS).
+        mov rax, 0x2000004
         ;; Set the first argument of `sys_write` to 1 (`stdout`).
         mov rdi, 1
         ;; Set the second argument of `sys_write` to the reference of the `msg` variable.
@@ -22,8 +22,8 @@ _start:
         ;; Call the `sys_write` system call.
         syscall
 
-        ;; Specify the number of the system call (60 is `sys_exit`).
-        mov rax, 60
+        ;; Specify the number of the system call (0x2000001 is `sys_exit` on macOS).
+        mov rax, 0x2000001
         ;; Set the first argument of `sys_exit` to 0. The 0 status code is success.
         mov rdi, 0
         ;; Call the `sys_exit` system call.

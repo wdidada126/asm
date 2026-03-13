@@ -1,0 +1,45 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build
+      run: |
+        cd hello
+        make
+        ./hello
+        cd ../strings
+        make
+        ./reverse
+        cd ../sum
+        make
+        ./sum
+        cd ../stack
+        make
+        ./stack 5 10
+        cd ../float
+        make
+        ./dot_product
+        cd ../casm/casm1
+        make
+        ./casm
+        cd ../casm2
+        make
+        ./casm
+        cd ../casm3
+        make
+        ./casm
