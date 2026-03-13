@@ -62,5 +62,3 @@ casm/casm2/casm
 casm/casm3/casm
 .idea
 *.iml
-hello/hello
-hello/hello.o

@@ -24,4 +24,24 @@ jobs:
         cd hello
         make
         ./hello
-        
+        cd ../strings
+        make
+        ./reverse
+        cd ../sum
+        make
+        ./sum
+        cd ../stack
+        make
+        ./stack
+        cd ../float
+        make
+        ./dot_product
+        cd ../casm/casm1
+        make
+        ./casm
+        cd ../casm2
+        make
+        ./casm
+        cd ../casm3
+        make
+        ./casm
