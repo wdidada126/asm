@@ -62,3 +62,11 @@ casm/casm2/casm
 casm/casm3/casm
 .idea
 *.iml
+
+float/simple_test
+float/simple_test2
+float/test2
+float/test3
+float/test_debug
+float/test_loop
+float/test_strtod
