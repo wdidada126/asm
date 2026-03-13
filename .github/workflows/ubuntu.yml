@@ -32,7 +32,7 @@ jobs:
         ./sum
         cd ../stack
         make
-        ./stack
+        ./stack 5 10
         cd ../float
         make
         ./dot_product
